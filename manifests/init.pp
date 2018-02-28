@@ -215,6 +215,7 @@ class galera(
   $service_enabled                = undef,
   $mysql_service_name             = undef,
   $mysql_config_file              = undef,
+  $mysql_includedir               = undef,
   $manage_package_nmap            = true,
   $manage_additional_packages     = true,
   $remove_default_accounts        = false,
@@ -286,6 +287,7 @@ class galera(
   class { '::mysql::server':
     package_name            => $galera::params::mysql_package_name,
     config_file             => $mysql_config_file,
+    includedir              => $mysql_includedir,
     override_options        => $options,
     root_password           => $root_password,
     create_root_my_cnf      => $create_root_my_cnf,
