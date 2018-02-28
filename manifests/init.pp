@@ -216,6 +216,7 @@ class galera(
   $mysql_service_name             = undef,
   $manage_package_nmap            = true,
   $manage_additional_packages     = true,
+  $remove_default_accounts        = false,
   $status_allow                   = '%',
   $status_host                    = 'localhost',
   $status_user                    = 'clustercheck',
@@ -282,14 +283,15 @@ class galera(
   }
 
   class { '::mysql::server':
-    package_name       => $galera::params::mysql_package_name,
-    override_options   => $options,
-    root_password      => $root_password,
-    create_root_my_cnf => $create_root_my_cnf,
-    create_root_user   => $create_root_user_real,
-    service_enabled    => $service_enabled,
-    service_name       => $galera::params::mysql_service_name,
-    restart            => $mysql_restart,
+    package_name            => $galera::params::mysql_package_name,
+    override_options        => $options,
+    root_password           => $root_password,
+    create_root_my_cnf      => $create_root_my_cnf,
+    create_root_user        => $create_root_user_real,
+    remove_default_accounts => $remove_default_accounts,
+    service_enabled         => $service_enabled,
+    service_name            => $galera::params::mysql_service_name,
+    restart                 => $mysql_restart,
   }
 
   file { $galera::params::rundir:
