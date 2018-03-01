@@ -311,7 +311,6 @@ class galera(
     {
       ensure  => $package_ensure,
       before  => Class['mysql::server::install'],
-      require => Class['mysql::server::config']
     })
   }
 
@@ -324,7 +323,6 @@ class galera(
       ] :
     ensure  => $galera_package_ensure,
     before  => Class['mysql::server::install'],
-    require => Class['mysql::server::config']
   }
 
 
