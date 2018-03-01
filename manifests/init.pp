@@ -243,8 +243,12 @@ class galera(
     include galera::debian
   }
 
-  if $status_check {
+  if $create_status_user {
     include galera::status
+  }
+
+  if $status_check {
+    include galera::clustercheck
   }
 
   if $validate_connection {
